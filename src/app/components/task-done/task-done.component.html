@@ -1,0 +1,8 @@
+<div class ="container">
+  <p>Zadania zrobione: {{taskDone.length}}</p>
+  <ul>
+    <li appChecked appDate [date]="task.end" *ngFor="let task of taskDone">
+      {{task.name | transformTask: " - 100%"}}
+    </li>
+  </ul>
+</div>

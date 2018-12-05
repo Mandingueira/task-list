@@ -1,0 +1,21 @@
+<div class ="container">
+    <app-add-task></app-add-task>
+    <ng-container *ngIf="taskList.length > 0 ; else noTask">
+      <div>
+        <p>Zadania do zrobienia: {{taskList.length}}</p>
+        <ul>
+          <li appDate [date]="task.created" *ngFor="let task of taskList | sortName; let odd = odd" [ngClass]="{'odd-li': odd, 'last-li': taskList.length === 1}">
+            {{task.name | transformTask: "!"}}
+            <button type="button" class="btn btn-danger" (click)="remove(task)" >Usun</button>
+            <button type="button" class="btn btn-primary" (click)="done(task)">Zrobione</button>
+          </li>
+        </ul>
+      </div>
+    </ng-container>
+
+    <ng-template #noTask>
+      <p>Brak zadan, masz czas wolny</p>
+    </ng-template>
+
+    <button (click)="save()">Save tasks</button>
+</div>
